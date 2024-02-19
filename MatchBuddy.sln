@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{ADC17ED4-86CB-4EA0-B570-4FE3D5A300AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.Api", "src\MatchBuddy.Api\MatchBuddy.Api.csproj", "{4CF66E11-8A4D-4498-AC01-FB9498613946}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.Api", "src\Api\MatchBuddy.Api\MatchBuddy.Api.csproj", "{4CF66E11-8A4D-4498-AC01-FB9498613946}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{11FCEE1A-AB5A-4301-8E08-7D44DAF5C7F0}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.DataAccess", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.Entities", "src\MatchBuddy.Entities\MatchBuddy.Entities.csproj", "{00A59683-C857-4CE4-AE6E-E2C39C856CDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.Business", "MatchBuddy.Business\MatchBuddy.Business.csproj", "{F58B97D2-91AE-43F9-9698-2905D890925E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatchBuddy.Business", "src\MatchBuddy.Business\MatchBuddy.Business.csproj", "{F58B97D2-91AE-43F9-9698-2905D890925E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
