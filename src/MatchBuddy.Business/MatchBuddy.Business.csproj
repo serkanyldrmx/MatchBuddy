@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MatchBuddy.DataAccess\MatchBuddy.DataAccess.csproj" />
+    <ProjectReference Include="..\MatchBuddy.Entities\MatchBuddy.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
