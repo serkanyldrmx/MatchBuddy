@@ -64,7 +64,7 @@ namespace MatchBuddy.DataAccess.Configuration
             builder.HasOne(x => x.Team)
                 .WithMany(x => x.Player)
                 .HasPrincipalKey(x => x.TeamId)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

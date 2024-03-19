@@ -1,9 +1,10 @@
-﻿using MatchBuddy.Entities;
+﻿using Core.Utilities.Results;
+using MatchBuddy.Entities;
 
 namespace Business.Abstract
 {
     public interface IStadiumService
     {
-        List<Stadium> GetAll();
+        IDataResult<List<Stadium>> GetAll();
     }
 }

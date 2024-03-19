@@ -6,13 +6,14 @@ namespace Business.Abstract
     public interface IMatchService
     {
         IDataResult<List<Match>> GetAll();
-        //Tüm maçları getir
-        IDataResult<List<Match>> GetAllByMatchId(int id);
-        //seçili maç bilgilerini getir
+        //Tüm maçları getir       
         IDataResult<Match> GetById(int matchId);
+        //seçili maç bilgilerini getir
         IResult Add(Match match);
         //Maç ekle - oluştur
-
-        //RESTFUL --> HTTP --> TCP
+        IResult Delete(Match match);
+        //Maç silme
+        IResult Update(Match match);
+        //Maç ekle - oluştur
     }
 }

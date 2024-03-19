@@ -19,6 +19,7 @@ namespace MatchBuddy.Entities
         //Maç Bildirim izni
         public int UserScore { get; set; }
         public List<User> Users { get; set; }
+        public List<MatchComment> MatchComments { get; set; }
         public Team Team { get; set; }
         public int TeamId { get; set; }
 

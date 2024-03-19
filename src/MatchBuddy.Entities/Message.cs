@@ -9,7 +9,7 @@ namespace MatchBuddy.Entities
         public string MatchMessage { get; set; }
         public DateTime SendingDate { get; set; }
         public byte Status { get; set; }
-        public int SendPlayerId { get; set; }
-        public int RecipientPlayerId { get; set; }
+        public int? SendPlayerId { get; set; }
+        public int? RecipientPlayerId { get; set; }
     }
 }

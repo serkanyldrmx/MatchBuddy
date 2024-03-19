@@ -11,7 +11,7 @@ namespace MatchBuddy.DataAccess.Configuration
             builder.HasKey(x => x.MatchTeamId);           
 
             builder.HasOne(x => x.Match)
-                .WithMany(x => x.matchTeams)
+                .WithMany(x => x.MatchTeams)
                 .HasPrincipalKey(x => x.MatchId)
                 .OnDelete(DeleteBehavior.Cascade);
 

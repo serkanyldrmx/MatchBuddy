@@ -5,11 +5,11 @@ namespace Business.Abstract
 {
     public interface IPlayerService
     {
-        Player GetPlayerInfo(int playerId);
+        IDataResult<Player> GetPlayerInfo(int playerId);
         //bilgilerimi getir
-        IDataResult<Player> GetPlayers();
+        IDataResult<List<Player>> GetPlayers();
         //Oyuncuları Listele
-        IDataResult<Player> GetTeam(int matchId);
+        IDataResult<Player> GetTeam(int playerId);
         //Takım arkadaşlarını getir
         IResult Update(Player player);
         //Bilgilerimi güncelle
