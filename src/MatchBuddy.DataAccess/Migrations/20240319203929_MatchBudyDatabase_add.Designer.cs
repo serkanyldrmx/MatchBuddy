@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatchBuddy.DataAccess.Migrations
 {
     [DbContext(typeof(MatchBuddyContext))]
-    [Migration("20240311063207_Messagee_table_addd")]
-    partial class Messagee_table_addd
+    [Migration("20240319203929_MatchBudyDatabase_add")]
+    partial class MatchBudyDatabaseadd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.16")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -33,9 +33,6 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchId"));
 
-                    b.Property<int>("CreateorUserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -44,7 +41,8 @@ namespace MatchBuddy.DataAccess.Migrations
                     b.Property<byte>("IsActive")
                         .HasColumnType("tinyint");
 
-                    b.Property<DateTime>("MatchDate")
+                    b.Property<DateTime?>("MatchDate")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MatchName")
@@ -52,13 +50,7 @@ namespace MatchBuddy.DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PlayerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("StadiumId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserCount")
@@ -66,13 +58,58 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasKey("MatchId");
 
-                    b.HasIndex("PlayerId");
-
                     b.HasIndex("StadiumId");
+
+                    b.ToTable("Matchs");
+                });
+
+            modelBuilder.Entity("MatchBuddy.Entities.MatchComment", b =>
+                {
+                    b.Property<int>("CommentsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentsId"));
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MatchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("playerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CommentsId");
+
+                    b.HasIndex("MatchId");
+
+                    b.HasIndex("playerId");
+
+                    b.ToTable("MatchComments");
+                });
+
+            modelBuilder.Entity("MatchBuddy.Entities.MatchTeam", b =>
+                {
+                    b.Property<int>("MatchTeamId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MatchTeamId"));
+
+                    b.Property<int>("MatchId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MatchTeamId");
+
+                    b.HasIndex("MatchId");
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Match");
+                    b.ToTable("MatchTeam");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Message", b =>
@@ -88,13 +125,10 @@ namespace MatchBuddy.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<int?>("PlayerId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("RecipientPlayerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SendPlayerId")
+                    b.Property<int?>("SendPlayerId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("SendingDate")
@@ -105,11 +139,7 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasKey("MessageId");
 
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("SendPlayerId");
-
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Player", b =>
@@ -177,7 +207,7 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Player");
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Stadium", b =>
@@ -187,6 +217,15 @@ namespace MatchBuddy.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StadiumId"));
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StadiumName")
                         .IsRequired()
@@ -213,56 +252,62 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasKey("TeamId");
 
-                    b.ToTable("Team");
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Match", b =>
                 {
-                    b.HasOne("MatchBuddy.Entities.Player", "Player")
-                        .WithMany("Matches")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MatchBuddy.Entities.Stadium", "Stadium")
                         .WithMany("Matches")
                         .HasForeignKey("StadiumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MatchBuddy.Entities.Team", "Team")
-                        .WithMany("Matches")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.Navigation("Stadium");
+                });
+
+            modelBuilder.Entity("MatchBuddy.Entities.MatchComment", b =>
+                {
+                    b.HasOne("MatchBuddy.Entities.Match", "Match")
+                        .WithMany("MatchComments")
+                        .HasForeignKey("MatchId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("MatchBuddy.Entities.Player", "Player")
+                        .WithMany("MatchComments")
+                        .HasForeignKey("playerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Match");
 
                     b.Navigation("Player");
-
-                    b.Navigation("Stadium");
-
-                    b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("MatchBuddy.Entities.Message", b =>
+            modelBuilder.Entity("MatchBuddy.Entities.MatchTeam", b =>
                 {
-                    b.HasOne("MatchBuddy.Entities.Player", null)
-                        .WithMany("SendMessage")
-                        .HasForeignKey("PlayerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MatchBuddy.Entities.Player", "SendPlayer")
-                        .WithMany("RecipientMessage")
-                        .HasForeignKey("SendPlayerId")
+                    b.HasOne("MatchBuddy.Entities.Match", "Match")
+                        .WithMany("MatchTeams")
+                        .HasForeignKey("MatchId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("SendPlayer");
+                    b.HasOne("MatchBuddy.Entities.Team", "Team")
+                        .WithMany("MatchTeams")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Match");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Player", b =>
                 {
                     b.HasOne("MatchBuddy.Entities.Team", "Team")
-                        .WithMany("Player")
+                        .WithMany("Players")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -270,13 +315,16 @@ namespace MatchBuddy.DataAccess.Migrations
                     b.Navigation("Team");
                 });
 
+            modelBuilder.Entity("MatchBuddy.Entities.Match", b =>
+                {
+                    b.Navigation("MatchComments");
+
+                    b.Navigation("MatchTeams");
+                });
+
             modelBuilder.Entity("MatchBuddy.Entities.Player", b =>
                 {
-                    b.Navigation("Matches");
-
-                    b.Navigation("RecipientMessage");
-
-                    b.Navigation("SendMessage");
+                    b.Navigation("MatchComments");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Stadium", b =>
@@ -286,9 +334,9 @@ namespace MatchBuddy.DataAccess.Migrations
 
             modelBuilder.Entity("MatchBuddy.Entities.Team", b =>
                 {
-                    b.Navigation("Matches");
+                    b.Navigation("MatchTeams");
 
-                    b.Navigation("Player");
+                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

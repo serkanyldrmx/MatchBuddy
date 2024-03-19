@@ -2,7 +2,7 @@
 
 namespace MatchBuddy.Entities
 {
-    public class Match 
+    public class Match :IEntity
     {
         public int MatchId { get; set; }
         public string? MatchName { get; set; }

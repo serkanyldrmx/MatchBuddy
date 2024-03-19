@@ -17,8 +17,7 @@ namespace MatchBuddy.Entities
         public int Age { get; set; }
         public byte MatchNotificationPermission { get; set; }
         public int UserScore { get; set; }
-        public Team Team { get; set; }
-        public int TeamId { get; set; }
         public List<MatchComment> MatchComments { get; set; }
+        public List<PlayerTeam> PlayerTeams { get; set; }
     }
 }

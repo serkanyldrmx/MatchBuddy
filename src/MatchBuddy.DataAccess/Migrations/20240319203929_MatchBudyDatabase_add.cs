@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MatchBuddy.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class FixedFK : Migration
+    public partial class MatchBudyDatabaseadd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Message",
+                name: "Messages",
                 columns: table => new
                 {
                     MessageId = table.Column<int>(type: "int", nullable: false)
@@ -25,7 +25,7 @@ namespace MatchBuddy.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Message", x => x.MessageId);
+                    table.PrimaryKey("PK_Messages", x => x.MessageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,7 +45,7 @@ namespace MatchBuddy.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Team",
+                name: "Teams",
                 columns: table => new
                 {
                     TeamId = table.Column<int>(type: "int", nullable: false)
@@ -54,11 +54,11 @@ namespace MatchBuddy.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Team", x => x.TeamId);
+                    table.PrimaryKey("PK_Teams", x => x.TeamId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Match",
+                name: "Matchs",
                 columns: table => new
                 {
                     MatchId = table.Column<int>(type: "int", nullable: false)
@@ -72,9 +72,9 @@ namespace MatchBuddy.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Match", x => x.MatchId);
+                    table.PrimaryKey("PK_Matchs", x => x.MatchId);
                     table.ForeignKey(
-                        name: "FK_Match_Stadiums_StadiumId",
+                        name: "FK_Matchs_Stadiums_StadiumId",
                         column: x => x.StadiumId,
                         principalTable: "Stadiums",
                         principalColumn: "StadiumId",
@@ -82,7 +82,7 @@ namespace MatchBuddy.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Player",
+                name: "Players",
                 columns: table => new
                 {
                     PlayerId = table.Column<int>(type: "int", nullable: false)
@@ -103,11 +103,11 @@ namespace MatchBuddy.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Player", x => x.PlayerId);
+                    table.PrimaryKey("PK_Players", x => x.PlayerId);
                     table.ForeignKey(
-                        name: "FK_Player_Team_TeamId",
+                        name: "FK_Players_Teams_TeamId",
                         column: x => x.TeamId,
-                        principalTable: "Team",
+                        principalTable: "Teams",
                         principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -125,21 +125,21 @@ namespace MatchBuddy.DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_MatchTeam", x => x.MatchTeamId);
                     table.ForeignKey(
-                        name: "FK_MatchTeam_Match_MatchId",
+                        name: "FK_MatchTeam_Matchs_MatchId",
                         column: x => x.MatchId,
-                        principalTable: "Match",
+                        principalTable: "Matchs",
                         principalColumn: "MatchId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MatchTeam_Team_TeamId",
+                        name: "FK_MatchTeam_Teams_TeamId",
                         column: x => x.TeamId,
-                        principalTable: "Team",
+                        principalTable: "Teams",
                         principalColumn: "TeamId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MatchComment",
+                name: "MatchComments",
                 columns: table => new
                 {
                     CommentsId = table.Column<int>(type: "int", nullable: false)
@@ -150,35 +150,35 @@ namespace MatchBuddy.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MatchComment", x => x.CommentsId);
+                    table.PrimaryKey("PK_MatchComments", x => x.CommentsId);
                     table.ForeignKey(
-                        name: "FK_MatchComment_Match_MatchId",
+                        name: "FK_MatchComments_Matchs_MatchId",
                         column: x => x.MatchId,
-                        principalTable: "Match",
+                        principalTable: "Matchs",
                         principalColumn: "MatchId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_MatchComment_Player_playerId",
+                        name: "FK_MatchComments_Players_playerId",
                         column: x => x.playerId,
-                        principalTable: "Player",
+                        principalTable: "Players",
                         principalColumn: "PlayerId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Match_StadiumId",
-                table: "Match",
-                column: "StadiumId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MatchComment_MatchId",
-                table: "MatchComment",
+                name: "IX_MatchComments_MatchId",
+                table: "MatchComments",
                 column: "MatchId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MatchComment_playerId",
-                table: "MatchComment",
+                name: "IX_MatchComments_playerId",
+                table: "MatchComments",
                 column: "playerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Matchs_StadiumId",
+                table: "Matchs",
+                column: "StadiumId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MatchTeam_MatchId",
@@ -191,8 +191,8 @@ namespace MatchBuddy.DataAccess.Migrations
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Player_TeamId",
-                table: "Player",
+                name: "IX_Players_TeamId",
+                table: "Players",
                 column: "TeamId");
         }
 
@@ -200,22 +200,22 @@ namespace MatchBuddy.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MatchComment");
+                name: "MatchComments");
 
             migrationBuilder.DropTable(
                 name: "MatchTeam");
 
             migrationBuilder.DropTable(
-                name: "Message");
+                name: "Messages");
 
             migrationBuilder.DropTable(
-                name: "Player");
+                name: "Players");
 
             migrationBuilder.DropTable(
-                name: "Match");
+                name: "Matchs");
 
             migrationBuilder.DropTable(
-                name: "Team");
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "Stadiums");
