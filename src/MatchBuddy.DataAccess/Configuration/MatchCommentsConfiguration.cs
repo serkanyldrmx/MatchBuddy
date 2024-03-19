@@ -12,15 +12,15 @@ namespace MatchBuddy.DataAccess.Configuration
 
             // UserId alanı için foreign key ilişkisi
             builder.HasOne(x => x.Player)
-                   .WithMany(x=>x.MatchComments)
+                   .WithMany(x => x.MatchComments)
                    .HasForeignKey(x => x.playerId)
-                   .IsRequired();
+                   .OnDelete(DeleteBehavior.Restrict);
 
             // MatchId alanı için foreign key ilişkisi
             builder.HasOne(x => x.Match)
                    .WithMany(x => x.MatchComments)
                    .HasForeignKey(x => x.MatchId)
-                   .IsRequired();
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

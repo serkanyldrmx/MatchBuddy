@@ -16,7 +16,7 @@ namespace MatchBuddy.DataAccess.Configuration
                 .IsRequired();
 
             builder
-                .Property(b=>b.PlayerSurname)
+                .Property(b => b.PlayerSurname)
                 .HasMaxLength(100)
                 .IsRequired();
 
@@ -62,7 +62,7 @@ namespace MatchBuddy.DataAccess.Configuration
                 .IsRequired();
 
             builder.HasOne(x => x.Team)
-                .WithMany(x => x.Player)
+                .WithMany(x => x.Players)
                 .HasPrincipalKey(x => x.TeamId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
