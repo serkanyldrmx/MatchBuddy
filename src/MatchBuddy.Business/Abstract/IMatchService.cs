@@ -1,4 +1,5 @@
 ﻿using Core.Utilities.Results;
+using MatchBuddy.Entities.DTOs;
 using System.Text.RegularExpressions;
 
 namespace Business.Abstract
@@ -15,5 +16,6 @@ namespace Business.Abstract
         //Maç silme
         IResult Update(Match match);
         //Maç ekle - oluştur
+        IDataResult<List<MatchComentsDto>> GetMatchComment();
     }
 }

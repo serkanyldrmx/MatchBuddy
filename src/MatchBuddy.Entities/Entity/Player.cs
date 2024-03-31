@@ -1,6 +1,6 @@
 ﻿using Core.Entities;
 
-namespace MatchBuddy.Entities
+namespace MatchBuddy.Entities.Entity
 {
     public class Player : IEntity
     {

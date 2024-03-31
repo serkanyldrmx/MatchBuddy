@@ -3,7 +3,7 @@ using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.DataAccess.Abstract
 {
-    public interface IStadiumDal : IEntityRepository<Stadium>
+    public interface IMessageDal: IEntityRepository<Message>
     {
     }
 }

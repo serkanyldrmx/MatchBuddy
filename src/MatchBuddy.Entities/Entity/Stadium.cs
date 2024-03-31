@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 
-namespace MatchBuddy.Entities
+namespace MatchBuddy.Entities.Entity
 {
-    public class Stadium:IEntity
+    public class Stadium : IEntity
     {
         public int StadiumId { get; set; }
         public string? StadiumName { get; set; }

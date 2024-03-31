@@ -1,7 +1,7 @@
 ﻿using Core.DataAccess.EntityFramework;
 using MatchBuddy.DataAccess;
 using MatchBuddy.DataAccess.Abstract;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.Entity;
 
 namespace DataAccess.Concrete.EntityFramework
 {

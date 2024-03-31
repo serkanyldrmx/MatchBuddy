@@ -1,10 +1,11 @@
 ﻿using Core.DataAccess;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.DTOs;
+using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.DataAccess.Abstract
 {
     public interface IMatchDal : IEntityRepository<Match>
     {
-        void Add(Match match);
+        List<MatchComentsDto> GetMatchComents();
     }
 }

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MatchBuddy.Entities
+namespace MatchBuddy.Entities.Entity
 {
-    public class PlayerTeam:IEntity
+    public class PlayerTeam : IEntity
     {
         public int PlayerTeamId { get; set; }
         public Team Team { get; set; }

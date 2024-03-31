@@ -1,13 +1,13 @@
 ﻿using Core.Utilities.Results;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.Entity;
 
 namespace Business.Abstract
 {
     public interface IMessageService
     {
-        Message GetRecipientMessage(int playerId);
+        IDataResult<List<Message>> GetRecipientMessage(int playerId);
         //Gelen mesajları getir
-        Message GetSendMessage(int playerId);
+        IDataResult<List<Message>> GetSendMessage(int playerId);
         //Gönderilen mesajları getir  
     }
 }

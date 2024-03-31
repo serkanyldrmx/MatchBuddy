@@ -1,4 +1,4 @@
-﻿using MatchBuddy.Entities;
+﻿using MatchBuddy.Entities.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

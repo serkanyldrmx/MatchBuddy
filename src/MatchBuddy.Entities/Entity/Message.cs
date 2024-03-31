@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 
-namespace MatchBuddy.Entities
+namespace MatchBuddy.Entities.Entity
 {
-    public class Message 
+    public class Message : IEntity
     {
         public int MessageId { get; set; }
         public string? MatchMessage { get; set; }

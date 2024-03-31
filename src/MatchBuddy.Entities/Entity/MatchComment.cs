@@ -1,8 +1,8 @@
 ﻿using Core.Entities;
 
-namespace MatchBuddy.Entities
+namespace MatchBuddy.Entities.Entity
 {
-    public class MatchComment 
+    public class MatchComment : IEntity
     {
         public int CommentsId { get; set; }
         public string? Comment { get; set; }

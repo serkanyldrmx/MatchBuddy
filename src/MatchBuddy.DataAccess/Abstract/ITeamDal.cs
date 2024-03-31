@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.DataAccess.Abstract
 {

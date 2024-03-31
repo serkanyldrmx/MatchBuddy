@@ -1,3 +1,8 @@
+using Business;
+using Business.Abstract;
+using DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Business.Concrete;
+using MatchBuddy.DataAccess.Abstract;
 
 namespace MatchBuddy.Api
 {
@@ -13,6 +18,8 @@ namespace MatchBuddy.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddSingleton<IPlayerService, PlayerManager>(); //Player managerý newliyor
+            builder.Services.AddSingleton<IPlayerDal, EFPlayerDal>();
 
             var app = builder.Build();
 

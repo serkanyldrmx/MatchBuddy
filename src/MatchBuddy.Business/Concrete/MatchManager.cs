@@ -1,11 +1,13 @@
-﻿using Business.Constants;
+﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.DTOs;
+using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
 {
-    public class MatchManager
+    public class MatchManager: IMatchService
     {
         IMatchDal _matchDal;
         public MatchManager(IMatchDal matchDal)
@@ -43,6 +45,11 @@ namespace MatchBuddy.Business.Concrete
         {
             _matchDal.Update(match);
             return new Result(true, Messages.Update);
+        }
+
+        public IDataResult<List<MatchComentsDto>> GetMatchComment()
+        {
+            return new SuccessDataResult<List<MatchComentsDto>>(_matchDal.GetMatchComents());
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Core.Utilities.Results;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.Entity;
 
 namespace Business.Abstract
 {

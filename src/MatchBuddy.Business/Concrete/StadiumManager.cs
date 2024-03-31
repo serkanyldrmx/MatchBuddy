@@ -2,7 +2,7 @@
 using Business.Constants;
 using Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
-using MatchBuddy.Entities;
+using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
 {
