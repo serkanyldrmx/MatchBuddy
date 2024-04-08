@@ -1,17 +1,18 @@
-﻿using DataAccess.Concrete.EntityFramework;
+﻿using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.DataAccess.Abstract;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace DataAccess
+namespace MatchBuddy.DataAccess
 {
     public static class ServiceRegistration
     {
         public static void AddDataAccessRegistration(this IServiceCollection services)
         {
+            services.AddScoped<IMatchDal, EFMatchDal>();
+            services.AddScoped<IMessageDal, EFMessageDal>();
             services.AddScoped<IPlayerDal, EFPlayerDal>();
-            //services.AddScoped<ICustomerDal, Ef>();
-            //services.AddScoped<IOrderDal, EFOrderDal>();
-            //services.AddScoped<IProductDal, EFProductDal>();
+            services.AddScoped<IStadiumDal, EFStadiumDal>();
+            services.AddScoped<ITeamDal, EFteamDal>();
         }
     }
 }

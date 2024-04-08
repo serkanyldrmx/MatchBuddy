@@ -1,6 +1,7 @@
-﻿using Business.Abstract;
-using DataAccess.Concrete.EntityFramework;
+﻿using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
+using MatchBuddy.Core.Utilities.Results;
+using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
@@ -52,10 +53,10 @@ namespace MatchBuddy.Api.Controllers
         }
 
         [HttpPost("getmatch")]
-        public List<Match> GetMatch(int matchId)
+        public Match GetMatch(int matchId)
         {
             IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetById(matchId);
+            IDataResult<Match> result = matchService.GetById(matchId);
             return result.Data;
         }
 

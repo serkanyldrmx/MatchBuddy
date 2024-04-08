@@ -1,6 +1,6 @@
-﻿using Business.Abstract;
-using DataAccess.Concrete.EntityFramework;
+﻿using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
+using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
 

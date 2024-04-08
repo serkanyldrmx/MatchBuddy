@@ -1,5 +1,5 @@
-﻿using Business.Abstract;
-using Core.Utilities.Results;
+﻿using MatchBuddy.Business.Abstract;
+using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
 using MatchBuddy.Entities.Entity;
 

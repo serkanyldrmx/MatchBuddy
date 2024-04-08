@@ -1,4 +1,4 @@
-﻿namespace Core.Entities
+﻿namespace MatchBuddy.Core.Entities
 {
     public interface IDto
     {

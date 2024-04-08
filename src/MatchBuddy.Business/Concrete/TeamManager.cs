@@ -1,6 +1,6 @@
-﻿using Business.Abstract;
-using Business.Constants;
-using Core.Utilities.Results;
+﻿using MatchBuddy.Business.Abstract;
+using MatchBuddy.Business.Constants;
+using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
 using MatchBuddy.Entities.Entity;
 

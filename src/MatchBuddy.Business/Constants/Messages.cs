@@ -1,4 +1,4 @@
-﻿namespace Business.Constants
+﻿namespace MatchBuddy.Business.Constants
 {
     public static class Messages
     {

@@ -1,12 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MatchBuddy.Business.Abstract;
+using MatchBuddy.Business.Concrete;
+using MatchBuddy.DataAccess.Abstract;
+using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Business
 {
-    public class ServiceRegistration
+    public static class ServiceRegistration
     {
+        public static void AddBussinesRegistration(this IServiceCollection services)
+        {
+            //services.AddScoped<IMatchCommentsService, MatchManager>();
+            services.AddScoped<IMatchService, MatchManager>();
+            services.AddScoped<IMessageService, MessageManager>();
+            services.AddScoped<IPlayerService, PlayerManager>();
+            services.AddScoped<IStadiumService, StadiumManager>();
+            services.AddScoped<ITeamService, TeamManager>();
+        }
     }
 }

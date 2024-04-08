@@ -1,8 +1,8 @@
-﻿using Core.Utilities.Results;
+﻿using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.Entities.DTOs;
-using System.Text.RegularExpressions;
+using MatchBuddy.Entities.Entity;
 
-namespace Business.Abstract
+namespace MatchBuddy.Business.Abstract
 {
     public interface IMatchService
     {

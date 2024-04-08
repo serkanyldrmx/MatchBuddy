@@ -1,7 +1,7 @@
-﻿using Core.Utilities.Results;
+﻿using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.Entities.Entity;
 
-namespace Business.Abstract
+namespace MatchBuddy.Business.Abstract
 {
     public interface IPlayerService
     {

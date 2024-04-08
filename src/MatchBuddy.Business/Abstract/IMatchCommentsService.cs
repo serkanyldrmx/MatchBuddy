@@ -1,6 +1,6 @@
 ﻿using MatchBuddy.Entities.Entity;
 
-namespace Business.Abstract
+namespace MatchBuddy.Business.Abstract
 {
     public interface IMatchCommentsService
     {

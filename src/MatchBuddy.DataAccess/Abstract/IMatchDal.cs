@@ -1,4 +1,4 @@
-﻿using Core.DataAccess;
+﻿using MatchBuddy.Core.DataAccess;
 using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 

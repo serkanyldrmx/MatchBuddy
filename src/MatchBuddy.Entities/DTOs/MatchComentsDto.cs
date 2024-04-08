@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using MatchBuddy.Core.Entities;
 
 namespace MatchBuddy.Entities.DTOs
 {
