@@ -1,4 +1,5 @@
-﻿using MatchBuddy.Business.Abstract;
+﻿using MatchBuddy.Api.Model;
+using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
@@ -20,8 +21,17 @@ namespace MatchBuddy.Api.Controllers
 
         //Maç eklemek için 
         [HttpPost("add")]
-        public IActionResult Add(Match match)
+        public IActionResult Add(MatchModel matchModel)
         {
+            var match = new Match() 
+            {
+                MatchDate = matchModel.MatchDate,
+                MatchName = matchModel.MatchName,
+                Description = matchModel.Description,
+                IsActive = matchModel.IsActive,
+                StadiumId = matchModel.StadiumId,
+                UserCount = matchModel.UserCount,
+            };
             var result = _matchService.Add(match);
             if (result.Success)
             {
@@ -30,9 +40,20 @@ namespace MatchBuddy.Api.Controllers
             return BadRequest(result);
         }
 
+        //Maç güncellemek için
         [HttpPost("update")]
-        public IActionResult Update(Match match)
+        public IActionResult Update(MatchModel matchModel)
         {
+            var match = new Match()
+            {
+                MatchId = matchModel.MatchId,
+                MatchDate = matchModel.MatchDate,
+                MatchName = matchModel.MatchName,
+                Description = matchModel.Description,
+                IsActive = matchModel.IsActive,
+                StadiumId = matchModel.StadiumId,
+                UserCount = matchModel.UserCount,
+            };
             var result = _matchService.Update(match);
             if (result.Success)
             {
@@ -41,9 +62,20 @@ namespace MatchBuddy.Api.Controllers
             return BadRequest(result);
         }
 
+        //Maç silmek için
         [HttpPost("delete")]
-        public IActionResult Delete(Match match)
+        public IActionResult Delete(MatchModel matchModel)
         {
+            var match = new Match()
+            {
+                MatchId = matchModel.MatchId,
+                MatchDate = matchModel.MatchDate,
+                MatchName = matchModel.MatchName,
+                Description = matchModel.Description,
+                IsActive = matchModel.IsActive,
+                StadiumId = matchModel.StadiumId,
+                UserCount = matchModel.UserCount,
+            };
             var result = _matchService.Delete(match);
             if (result.Success)
             {
@@ -52,6 +84,7 @@ namespace MatchBuddy.Api.Controllers
             return BadRequest(result);
         }
 
+        //Tek bir maçı getirmek için 
         [HttpPost("getmatch")]
         public Match GetMatch(int matchId)
         {
@@ -68,12 +101,12 @@ namespace MatchBuddy.Api.Controllers
             return result.Data;
         }
                 
-        [HttpGet("getmatchcomments")]
-        public List<MatchComentsDto> GetMatchComments()
-        {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetMatchComment();
-            return result.Data;
-        }
+        //[HttpGet("getmatchcomments")]
+        //public List<MatchComentsDto> GetMatchComments()
+        //{
+        //    IMatchService matchService = new MatchManager(new EFMatchDal());
+        //    var result = matchService.GetMatchComment();
+        //    return result.Data;
+        //}
     }
 }

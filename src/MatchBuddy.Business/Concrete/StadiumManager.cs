@@ -2,7 +2,9 @@
 using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
+using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.Entities.Entity;
+using System.Numerics;
 
 namespace MatchBuddy.Business.Concrete
 {
@@ -13,6 +15,17 @@ namespace MatchBuddy.Business.Concrete
         {
             _stadiumDal = stadiumDal;
         }
+
+        public IResult Add(Stadium stadium)
+        {
+            if (stadium.StadiumName.Length < 3)
+            {
+                return new ErrorResult(Messages.PlayerNameInvalid);
+            }
+            _stadiumDal.Add(stadium);
+            return new Result(true, Messages.Added);
+        }
+
         public IDataResult<List<Stadium>> GetAll()
         {
             return new SuccessDataResult<List<Stadium>>(_stadiumDal.GetAll(), Messages.PlayersListed);

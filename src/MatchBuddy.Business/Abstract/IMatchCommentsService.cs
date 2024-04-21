@@ -1,10 +1,12 @@
-﻿using MatchBuddy.Entities.Entity;
+﻿using MatchBuddy.Core.Utilities.Results;
+using MatchBuddy.Entities.DTOs;
+using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Abstract
 {
     public interface IMatchCommentsService
     {
-        List<MatchComment> GetMatchCommentsAll(int matchId);
+        //IDataResult<List<MatchComment>> GetMatchComment(int matchId);
         //Maç yorumlarını getir
     }
 }

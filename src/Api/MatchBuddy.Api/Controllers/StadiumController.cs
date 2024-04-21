@@ -1,4 +1,5 @@
-﻿using MatchBuddy.Business.Abstract;
+﻿using MatchBuddy.Api.Model;
+using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.Entities.Entity;
@@ -15,6 +16,25 @@ namespace MatchBuddy.Api.Controllers
         public StadiumController(IStadiumService stadiumService)
         {
             _stadiumService = stadiumService;
+        }
+
+        //oyuncu eklemek için 
+        [HttpPost("add")]
+        public IActionResult Add(StadiumModel stadiumModel)
+        {
+            var stadium = new Stadium()
+            {
+                StadiumName = stadiumModel.StadiumName,
+                City = stadiumModel.City,
+                District = stadiumModel.District,
+                Location = stadiumModel.Location,
+            };
+            var result = _stadiumService.Add(stadium);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
         [HttpGet("getall")]
