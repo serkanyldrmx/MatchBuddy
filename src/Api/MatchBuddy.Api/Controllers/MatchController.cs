@@ -20,8 +20,8 @@ namespace MatchBuddy.Api.Controllers
         }
 
         //Maç eklemek için 
-        [HttpPost("add")]
-        public IActionResult Add(MatchModel matchModel)
+        [HttpPost("SaveMatch")]
+        public IActionResult SaveMatch(MatchModel matchModel)
         {
             var match = new Match() 
             {
@@ -41,8 +41,8 @@ namespace MatchBuddy.Api.Controllers
         }
 
         //Maç güncellemek için
-        [HttpPost("update")]
-        public IActionResult Update(MatchModel matchModel)
+        [HttpPost("UpdateMatch")]
+        public IActionResult UpdateMatch(MatchModel matchModel)
         {
             var match = new Match()
             {
@@ -63,8 +63,8 @@ namespace MatchBuddy.Api.Controllers
         }
 
         //Maç silmek için
-        [HttpPost("delete")]
-        public IActionResult Delete(MatchModel matchModel)
+        [HttpPost("DeleteMatch")]
+        public IActionResult DeleteMatch(MatchModel matchModel)
         {
             var match = new Match()
             {
@@ -85,16 +85,16 @@ namespace MatchBuddy.Api.Controllers
         }
 
         //Tek bir maçı getirmek için 
-        [HttpPost("getmatch")]
-        public Match GetMatch(int matchId)
+        [HttpGet("GetMatchById")]
+        public Match GetMatchById([FromQuery]int matchId)
         {
             IMatchService matchService = new MatchManager(new EFMatchDal());
             IDataResult<Match> result = matchService.GetById(matchId);
             return result.Data;
         }
 
-        [HttpGet("getall")]
-        public List<Match> GetAll()
+        [HttpGet("GetMatchList")]
+        public List<Match> GetMatchList()
         {
             IMatchService matchService = new MatchManager(new EFMatchDal());
             var result = matchService.GetAll();

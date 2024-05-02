@@ -30,7 +30,7 @@ namespace MatchBuddy.Api.Controllers
             return result.Data;
         }
 
-        [HttpGet("GetplayerById")] 
+        [HttpGet("GetPlayerById")] 
         public Player GetplayerById([FromQuery]int playerId)
         {
             IPlayerService playerService = new PlayerManager(new EFPlayerDal());
@@ -38,7 +38,7 @@ namespace MatchBuddy.Api.Controllers
             return result.Data;
         }
         [HttpPost("SavePlayer")]
-        public IActionResult SavePlayer([FromForm]PlayerModel playerModel)
+        public IActionResult SavePlayer(PlayerModel playerModel)
         {
             var player= new Player()
             {

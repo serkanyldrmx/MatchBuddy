@@ -19,8 +19,8 @@ namespace MatchBuddy.Api.Controllers
         }
 
         //oyuncu eklemek için 
-        [HttpPost("add")]
-        public IActionResult Add(StadiumModel stadiumModel)
+        [HttpPost("SaveStadium")]
+        public IActionResult SaveStadium(StadiumModel stadiumModel)
         {
             var stadium = new Stadium()
             {
@@ -37,8 +37,8 @@ namespace MatchBuddy.Api.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getall")]
-        public List<Stadium> Get()
+        [HttpGet("GetStadiumList")]
+        public List<Stadium> GetStadiumList()
         {
             IStadiumService stadiumService = new StadiumManager(new EFStadiumDal());
             var result = _stadiumService.GetAll();

@@ -17,16 +17,16 @@ namespace MatchBuddy.Api.Controllers
             _messageDal = messageDal;
         }
 
-        [HttpPost("getsendmessages")]
-        public List<Message> GetSendMessage(int playerId)
+        [HttpGet("GetSendMessages")]
+        public List<Message> GetSendMessages([FromQuery]int playerId)
         {
             IMessageService messageService = new MessageManager(new EFMessageDal());
             var result = messageService.GetSendMessage(playerId);
             return result.Data;
         }
 
-        [HttpPost("getrecipientmessages")]
-        public List<Message> GetRecipientMessage(int playerId)
+        [HttpGet("GetRecipientMessages")]
+        public List<Message> GetRecipientMessage([FromQuery]int playerId)
         {
             IMessageService messageService = new MessageManager(new EFMessageDal());
             var result = messageService.GetRecipientMessage(playerId);
