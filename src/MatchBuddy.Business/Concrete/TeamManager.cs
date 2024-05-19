@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
+using MatchBuddy.DataAccess.Concrete.EntityFramework;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
@@ -26,17 +27,27 @@ namespace MatchBuddy.Business.Concrete
 
         public IResult Delete(Team team)
         {
-            throw new NotImplementedException();
+            //if (team.TeamName.Length < 3)
+            //{
+            //    return new ErrorResult(Messages.TeamNameInvalid);
+            //}
+            _teamDal.Delete(team);
+            return new Result(true, Messages.Deleted);
         }
 
         public IDataResult<List<Team>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Team>>(_teamDal.GetAll(), Messages.PlayersListed);
         }
 
         public IResult Update(Team team)
         {
-            throw new NotImplementedException();
+            //if (team.TeamName.Length < 3)
+            //{
+            //    return new ErrorResult(Messages.TeamNameInvalid);
+            //}
+            _teamDal.Update(team);
+            return new Result(true, Messages.Update);
         }
     }
 }

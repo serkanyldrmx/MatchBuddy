@@ -1,4 +1,5 @@
 ﻿using MatchBuddy.Core.Utilities.Results;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Abstract
@@ -7,6 +8,7 @@ namespace MatchBuddy.Business.Abstract
     {
         IDataResult<Player> GetPlayerInfo(int playerId);
         //bilgilerimi getir
+        IDataResult<Player> LoginToGetPlayer(PlayerLogin playerLogin);
         IDataResult<List<Player>> GetPlayers();
         //Oyuncuları Listele
         IDataResult<Player> GetTeam(int playerId);

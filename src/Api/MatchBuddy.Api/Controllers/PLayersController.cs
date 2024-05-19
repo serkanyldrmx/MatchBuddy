@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -87,6 +88,20 @@ namespace MatchBuddy.Api.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpPost("PlayerLogin")]
+        public Player PlayerLogin(LoginModel loginModel)
+        {
+            var PlayerLogin = new PlayerLogin()
+            {
+                Password = loginModel.Password,
+                Email = loginModel.Email,
+                UserName= loginModel.UserName,
+            };
+            IPlayerService playerService = new PlayerManager(new EFPlayerDal());
+            var result = playerService.LoginToGetPlayer(PlayerLogin);
+            return result.Data;
         }
     }
 }

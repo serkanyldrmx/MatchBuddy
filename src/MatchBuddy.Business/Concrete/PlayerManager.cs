@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
@@ -58,6 +59,10 @@ namespace MatchBuddy.Business.Concrete
             return new Result(true, Messages.Update);
         }
 
-        
+        public IDataResult<Player> LoginToGetPlayer(PlayerLogin playerLogin)
+        {
+            return new SuccessDataResult<Player>(_playerDal.Get(p => p.UserName == playerLogin.UserName && p.Password==playerLogin.Password));
+        }
+
     }
 }

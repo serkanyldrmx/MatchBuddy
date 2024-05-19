@@ -19,7 +19,7 @@ namespace MatchBuddy.Api
             builder.Services.AddBussinesRegistration();
             builder.Services.AddCoreRegistration();
             builder.Services.AddDataAccessRegistration();
-
+            builder.Services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,7 +30,7 @@ namespace MatchBuddy.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors("AllowAll");
             app.UseAuthorization();
 
 
