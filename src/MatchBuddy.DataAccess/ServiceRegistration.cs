@@ -13,6 +13,7 @@ namespace MatchBuddy.DataAccess
             services.AddScoped<IPlayerDal, EFPlayerDal>();
             services.AddScoped<IStadiumDal, EFStadiumDal>();
             services.AddScoped<ITeamDal, EFteamDal>();
+            services.AddScoped<IPlayerTeamDal, EFPlayerTeamDal>();
         }
     }
 }

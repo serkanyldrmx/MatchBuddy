@@ -6,5 +6,6 @@ namespace MatchBuddy.DataAccess.Abstract
 {
     public interface IMatchDal : IEntityRepository<Match>
     {
+        List<MatchComentsDto> GetMatchComents(int matchId);
     }
 }

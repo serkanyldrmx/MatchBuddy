@@ -16,6 +16,7 @@ namespace Business
             services.AddScoped<IPlayerService, PlayerManager>();
             services.AddScoped<IStadiumService, StadiumManager>();
             services.AddScoped<ITeamService, TeamManager>();
+            services.AddScoped<IPlayerTeamService, PlayerTeamManager>();
         }
     }
 }

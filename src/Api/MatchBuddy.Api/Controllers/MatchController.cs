@@ -101,12 +101,12 @@ namespace MatchBuddy.Api.Controllers
             return result.Data;
         }
                 
-        //[HttpGet("getmatchcomments")]
-        //public List<MatchComentsDto> GetMatchComments()
-        //{
-        //    IMatchService matchService = new MatchManager(new EFMatchDal());
-        //    var result = matchService.GetMatchComment();
-        //    return result.Data;
-        //}
+        [HttpGet("GetMatchComments")]
+        public List<MatchComentsDto> GetMatchComments([FromQuery] int matchId)
+        {
+            IMatchService matchService = new MatchManager(new EFMatchDal());
+            var result = matchService.GetMatchComents(matchId);
+            return result.Data;
+        }
     }
 }

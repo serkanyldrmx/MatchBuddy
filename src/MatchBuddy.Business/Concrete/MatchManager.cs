@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
@@ -46,6 +47,10 @@ namespace MatchBuddy.Business.Concrete
             return new Result(true, Messages.Update);
         }
 
-        
+        public IDataResult<List<MatchComentsDto>> GetMatchComents(int matchId)
+        {
+            return new SuccessDataResult<List<MatchComentsDto>>(_matchDal.GetMatchComents(matchId));
+        }
+
     }
 }

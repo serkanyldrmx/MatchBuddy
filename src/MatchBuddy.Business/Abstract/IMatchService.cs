@@ -16,5 +16,6 @@ namespace MatchBuddy.Business.Abstract
         //Maç silme
         IResult Update(Match match);
         //Maç ekle - oluştur
+        IDataResult<List<MatchComentsDto>> GetMatchComents(int matchId);
     }
 }
