@@ -21,9 +21,13 @@ namespace MatchBuddy.Api.Controllers
         [HttpPost("SaveTeam")]
         public IActionResult SaveTeam(TeamModel teamModel)
         {
-            var team = new Team()
+            var team = new Team
             {
-                TeamName=teamModel.TeamName
+                TeamName = teamModel.TeamName,
+                PlayerTeams = teamModel.PlayerId.Select(playerId => new PlayerTeam
+                {
+                    PlayerId = playerId
+                }).ToList()
             };
             var result = _teamService.Add(team);
             if (result.Success)
