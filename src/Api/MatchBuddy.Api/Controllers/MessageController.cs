@@ -41,8 +41,8 @@ namespace MatchBuddy.Api.Controllers
                 SendPlayerId = messageModel.SendPlayerId,
                 RecipientPlayerId = messageModel.RecipientPlayerId
             };
-            var result = _messageService.GetMessageById(MessageModel)
-;            return result.Data;
+            var result = _messageService.GetMessageById(MessageModel);
+            return result.Data;
         }
 
         [HttpPost("MessageSave")]

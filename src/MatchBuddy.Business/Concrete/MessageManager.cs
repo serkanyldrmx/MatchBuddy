@@ -29,7 +29,8 @@ namespace MatchBuddy.Business.Concrete
 
         public IDataResult<List<Message>> GetMessageById(GetMessageModel messageModel)
         {
-            return new SuccessDataResult<List<Message>>(_messageDal.GetAll(p => p.SendPlayerId == messageModel.SendPlayerId && p.RecipientPlayerId == messageModel.RecipientPlayerId));
+            return new SuccessDataResult<List<Message>>(_messageDal.GetAll(p => p.SendPlayerId == messageModel.SendPlayerId && p.RecipientPlayerId == messageModel.RecipientPlayerId ||
+            p.SendPlayerId == messageModel.RecipientPlayerId && p.RecipientPlayerId == messageModel.SendPlayerId));
         }
 
         public IResult Add(Message message)
