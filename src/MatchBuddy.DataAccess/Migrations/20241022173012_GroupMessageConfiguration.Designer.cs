@@ -4,6 +4,7 @@ using MatchBuddy.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatchBuddy.DataAccess.Migrations
 {
     [DbContext(typeof(MatchBuddyContext))]
-    partial class MatchBuddyContextModelSnapshot : ModelSnapshot
+    [Migration("20241022173012_GroupMessageConfiguration")]
+    partial class GroupMessageConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,24 +24,6 @@ namespace MatchBuddy.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MatchBuddy.Entities.Entity.Group", b =>
-                {
-                    b.Property<int>("GroupId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"));
-
-                    b.Property<string>("GroupName")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.HasKey("GroupId");
-
-                    b.ToTable("Groups");
-                });
 
             modelBuilder.Entity("MatchBuddy.Entities.Entity.GroupMessage", b =>
                 {
@@ -48,8 +33,10 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupMessageId"));
 
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
+                    b.Property<string>("GroupName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("MatchMessage")
                         .IsRequired()
@@ -68,9 +55,7 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasKey("GroupMessageId");
 
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("GroupMessages");
+                    b.ToTable("GroupMessage");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Entity.GroupPlayer", b =>
@@ -81,7 +66,7 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupPlayerId"));
 
-                    b.Property<int>("GroupId")
+                    b.Property<int>("GroupMessageId")
                         .HasColumnType("int");
 
                     b.Property<int>("PlayerId")
@@ -92,11 +77,11 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     b.HasKey("GroupPlayerId");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("GroupMessageId");
 
                     b.HasIndex("PlayerId");
 
-                    b.ToTable("GroupPlayers");
+                    b.ToTable("GroupPlayer");
                 });
 
             modelBuilder.Entity("MatchBuddy.Entities.Entity.Match", b =>
@@ -347,22 +332,11 @@ namespace MatchBuddy.DataAccess.Migrations
                     b.ToTable("Teams");
                 });
 
-            modelBuilder.Entity("MatchBuddy.Entities.Entity.GroupMessage", b =>
-                {
-                    b.HasOne("MatchBuddy.Entities.Entity.Group", "Group")
-                        .WithMany("GroupMessages")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Group");
-                });
-
             modelBuilder.Entity("MatchBuddy.Entities.Entity.GroupPlayer", b =>
                 {
-                    b.HasOne("MatchBuddy.Entities.Entity.Group", "Group")
+                    b.HasOne("MatchBuddy.Entities.Entity.GroupMessage", "GroupMessage")
                         .WithMany("GroupPlayers")
-                        .HasForeignKey("GroupId")
+                        .HasForeignKey("GroupMessageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -372,7 +346,7 @@ namespace MatchBuddy.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Group");
+                    b.Navigation("GroupMessage");
 
                     b.Navigation("Player");
                 });
@@ -445,10 +419,8 @@ namespace MatchBuddy.DataAccess.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("MatchBuddy.Entities.Entity.Group", b =>
+            modelBuilder.Entity("MatchBuddy.Entities.Entity.GroupMessage", b =>
                 {
-                    b.Navigation("GroupMessages");
-
                     b.Navigation("GroupPlayers");
                 });
 
