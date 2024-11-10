@@ -62,7 +62,7 @@ namespace MatchBuddy.Api.Controllers
 
         [HttpPost("GetGroupMessageById")]
         public List<GroupMessageModelDto> GetGroupMessageById(GroupMessageModel groupMessageModel)
-        {
+        { 
             IGroupMessageService groupMessageService = new GroupMessageManager(new EFGroupMessageDal());
             var result = groupMessageService.GetGroupMessageById(groupMessageModel.GroupId);
             return result.Data;
