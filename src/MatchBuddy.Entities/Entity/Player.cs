@@ -19,5 +19,6 @@ namespace MatchBuddy.Entities.Entity
         public int UserScore { get; set; }
         public List<MatchComment> MatchComments { get; set; }
         public List<PlayerTeam> PlayerTeams { get; set; }
+        public List<GroupPlayer> GroupPlayers { get; set; }
     }
 }
