@@ -8,8 +8,32 @@ namespace MatchBuddy.DataAccess.Concrete.EntityFramework
 {
     public class EFMatchDal : EfEntityRepositoryBase<Match, MatchBuddyContext>, IMatchDal
     {
+        public List<MatchTeamDto> GetMatchTeam(int matchId)
+        {
+
+            using (MatchBuddyContext context = new MatchBuddyContext())
+            {
+                var result = from p in context.MatchTeam
+                             join pt in context.PlayerTeam on p.TeamId equals pt.TeamId
+                             join pl in context.Players on pt.PlayerId equals pl.PlayerId
+                             where p.MatchId == matchId
+                             select new MatchTeamDto
+                             {
+                                  MatchId  =p.MatchId,
+                                  TeamId =p.TeamId,
+                                  PlayerName = pl.PlayerName,
+                                  PlayerSurname = pl.PlayerSurname,
+                                  UserName = pl.UserName,
+                                  UserScore = pl.UserScore
+                             };
+                return result.ToList();
+            }
+
+        }
+
         public List<MatchComentsDto> GetMatchComents(int matchId)
         {
+
 
             using (MatchBuddyContext context = new MatchBuddyContext())
             {
