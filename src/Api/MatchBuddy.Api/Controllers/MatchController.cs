@@ -97,16 +97,14 @@ namespace MatchBuddy.Api.Controllers
         [HttpGet("GetMatchList")]
         public List<Match> GetMatchList()
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetAll();
+            var result = _matchService.GetAll();
             return result.Data;
         }
                 
         [HttpGet("GetMatchComments")]
         public List<MatchComentsDto> GetMatchComments([FromQuery] int matchId)
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetMatchComents(matchId);
+            var result = _matchService.GetMatchComents(matchId);
             return result.Data;
         }
 
@@ -114,8 +112,7 @@ namespace MatchBuddy.Api.Controllers
         [HttpGet("GetMatchTeamInfo")]
         public List<MatchTeamDto> GetMatchTeamInfo([FromQuery] int matchId)
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetMatchTeam(matchId);
+            var result = _matchService.GetMatchTeam(matchId);
             return result.Data;
         }
 
@@ -123,7 +120,6 @@ namespace MatchBuddy.Api.Controllers
         [HttpPost("SaveMatchTeam")]
         public IActionResult SaveMatchTeam(MatchTeamModel matchTeamModel)
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
             var matchTeam = new MatchTeam()
             {
                MatchId= matchTeamModel.MatchId,

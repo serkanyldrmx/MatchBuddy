@@ -15,12 +15,14 @@ namespace MatchBuddy.DataAccess.Concrete.EntityFramework
             {
                 var result = from p in context.MatchTeam
                              join pt in context.PlayerTeam on p.TeamId equals pt.TeamId
+                             join t in context.Teams on p.TeamId equals t.TeamId
                              join pl in context.Players on pt.PlayerId equals pl.PlayerId
                              where p.MatchId == matchId
                              select new MatchTeamDto
                              {
                                   MatchId  =p.MatchId,
                                   TeamId =p.TeamId,
+                                  TeamName = t.TeamName,
                                   PlayerName = pl.PlayerName,
                                   PlayerSurname = pl.PlayerSurname,
                                   UserName = pl.UserName,

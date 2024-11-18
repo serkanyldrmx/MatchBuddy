@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,10 +53,10 @@ namespace MatchBuddy.Api.Controllers
         }
 
         [HttpGet("GetTeamList")]
-        public List<Team> GetTeamList()
+        public List<GetTeamAndPlayer> GetTeamList()
         {
             ITeamService teamService = new TeamManager(new EFteamDal());
-            var result = _teamService.GetAll();
+            var result = _teamService.GetTeamAndPlayer();
             return result.Data;
         }
     }

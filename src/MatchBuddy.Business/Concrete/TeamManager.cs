@@ -3,6 +3,7 @@ using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Concrete
@@ -48,6 +49,11 @@ namespace MatchBuddy.Business.Concrete
             //}
             _teamDal.Update(team);
             return new Result(true, Messages.Update);
+        }
+
+        public IDataResult<List<GetTeamAndPlayer>> GetTeamAndPlayer()
+        {
+            return new SuccessDataResult<List<GetTeamAndPlayer>>(_teamDal.GetTeamAndPlayer());
         }
     }
 }

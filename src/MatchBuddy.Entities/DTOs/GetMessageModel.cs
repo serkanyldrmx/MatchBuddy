@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MatchBuddy.Entities.DTOs
 {
-    public class GetMessageModel
+    public class GetMessageModel:IDto
     {
         public int? SendPlayerId { get; set; }
         public int? RecipientPlayerId { get; set; }
