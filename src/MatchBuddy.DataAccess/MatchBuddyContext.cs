@@ -25,6 +25,8 @@ namespace MatchBuddy.DataAccess
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupMessage> GroupMessages { get; set; }
         public DbSet<GroupPlayer> GroupPlayers { get; set; }
+        public DbSet<MatchTeam> MatchTeam { get; set; }
+        public DbSet<PlayerTeam> PlayerTeam { get; set; }
 
     }
 }

@@ -55,7 +55,7 @@ namespace MatchBuddy.DataAccess.Configuration
             builder.Property(b => b.Age)
                 .IsRequired();
 
-            builder.Property(b => b.MatchNotificationPermission)
+            builder.Property(b => b.IsAdmin)
                  .IsRequired();
 
             builder.Property(b => b.UserScore)

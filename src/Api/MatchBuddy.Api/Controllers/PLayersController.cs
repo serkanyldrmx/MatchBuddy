@@ -52,7 +52,6 @@ namespace MatchBuddy.Api.Controllers
                 Address= playerModel.Address,
                 Age= playerModel.Age,
                 Email= playerModel.Email,
-                MatchNotificationPermission= playerModel.MatchNotificationPermission,
                 PhoneNumber= playerModel.PhoneNumber,
                 UserName= playerModel.UserName,
             };
@@ -78,7 +77,6 @@ namespace MatchBuddy.Api.Controllers
                 Address = playerModel.Address,
                 Age = playerModel.Age,
                 Email = playerModel.Email,
-                MatchNotificationPermission = playerModel.MatchNotificationPermission,
                 PhoneNumber = playerModel.PhoneNumber,
                 UserName = playerModel.UserName,
             };

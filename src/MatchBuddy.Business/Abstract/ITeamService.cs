@@ -1,4 +1,5 @@
 ﻿using MatchBuddy.Core.Utilities.Results;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 
 namespace MatchBuddy.Business.Abstract
@@ -13,5 +14,6 @@ namespace MatchBuddy.Business.Abstract
         //Oyuncu ekleme
         IResult Delete(Team team);
         //Maç silme
+        IDataResult<List<GetTeamAndPlayer>> GetTeamAndPlayer();
     }
 }

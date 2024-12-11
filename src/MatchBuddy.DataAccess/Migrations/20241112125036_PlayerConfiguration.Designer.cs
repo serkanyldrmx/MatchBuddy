@@ -4,6 +4,7 @@ using MatchBuddy.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MatchBuddy.DataAccess.Migrations
 {
     [DbContext(typeof(MatchBuddyContext))]
-    partial class MatchBuddyContextModelSnapshot : ModelSnapshot
+    [Migration("20241112125036_PlayerConfiguration")]
+    partial class PlayerConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,29 +310,14 @@ namespace MatchBuddy.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StadiumId"));
 
-                    b.Property<string>("Address")
-                        .HasMaxLength(300)
-                        .HasColumnType("nvarchar(300)");
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("City")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan?>("ClosingTime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int?>("District")
-                        .HasColumnType("int");
+                    b.Property<string>("District")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<TimeSpan?>("OpeningTime")
-                        .HasColumnType("time");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StadiumName")
                         .IsRequired()

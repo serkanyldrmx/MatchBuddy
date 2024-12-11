@@ -14,6 +14,7 @@ namespace MatchBuddy.Api.Controllers
     public class MatchController : ControllerBase
     {
         IMatchService _matchService;
+        
         public MatchController(IMatchService matchService)
         {
             _matchService = matchService;
@@ -88,25 +89,48 @@ namespace MatchBuddy.Api.Controllers
         [HttpGet("GetMatchById")]
         public Match GetMatchById([FromQuery]int matchId)
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            IDataResult<Match> result = matchService.GetById(matchId);
+            
+            IDataResult<Match> result = _matchService.GetById(matchId);
             return result.Data;
         }
 
         [HttpGet("GetMatchList")]
         public List<Match> GetMatchList()
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetAll();
+            var result = _matchService.GetAll();
             return result.Data;
         }
                 
         [HttpGet("GetMatchComments")]
         public List<MatchComentsDto> GetMatchComments([FromQuery] int matchId)
         {
-            IMatchService matchService = new MatchManager(new EFMatchDal());
-            var result = matchService.GetMatchComents(matchId);
+            var result = _matchService.GetMatchComents(matchId);
             return result.Data;
+        }
+
+        //bir maçtaki takımları ve bu takımlardaki oyuncu bilgilerini getirir
+        [HttpGet("GetMatchTeamInfo")]
+        public List<MatchTeamDto> GetMatchTeamInfo([FromQuery] int matchId)
+        {
+            var result = _matchService.GetMatchTeam(matchId);
+            return result.Data;
+        }
+
+        //Maçtaki Takımları kayıt eder
+        [HttpPost("SaveMatchTeam")]
+        public IActionResult SaveMatchTeam(MatchTeamModel matchTeamModel)
+        {
+            var matchTeam = new MatchTeam()
+            {
+               MatchId= matchTeamModel.MatchId,
+               TeamId= matchTeamModel.TeamId
+            };
+            var result = _matchService.AddMatchTeam(matchTeam);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }

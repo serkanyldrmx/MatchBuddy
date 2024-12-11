@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,10 +13,12 @@ namespace MatchBuddy.Api.Controllers
     public class TeamController : ControllerBase
     {
         ITeamService _teamService;
+        IPlayerTeamService _playerTeamService;
 
-        public TeamController(ITeamService teamService)
+        public TeamController(ITeamService teamService, IPlayerTeamService playerTeamService)
         {
             _teamService = teamService;
+            _playerTeamService = playerTeamService;
         }
 
         [HttpPost("SaveTeam")]
@@ -23,25 +26,37 @@ namespace MatchBuddy.Api.Controllers
         {
             var team = new Team
             {
-                TeamName = teamModel.TeamName,
-                PlayerTeams = teamModel.PlayerId.Select(playerId => new PlayerTeam
-                {
-                    PlayerId = playerId
-                }).ToList()
+                TeamName = teamModel.TeamName,                
             };
             var result = _teamService.Add(team);
             if (result.Success)
             {
+                foreach (var playerId in teamModel.PlayerId)
+                {
+                    var playerTeam = new PlayerTeam()
+                    {
+                        PlayerId = playerId,
+                        TeamId = team.TeamId // group nesnesinin Id'sini kullanarak gruba ait olduğu belirtiliyor
+                    };
+
+                    var result1 = _playerTeamService.Add(playerTeam);
+
+                    if (!result1.Success)
+                    {
+                        return BadRequest(result1); // Eğer ekleme işlemi başarısız olursa, döngüyü sonlandırıp hata döndürüyoruz
+                    }
+                }
+
                 return Ok(result);
             }
             return BadRequest(result);
         }
 
         [HttpGet("GetTeamList")]
-        public List<Team> GetTeamList()
+        public List<GetTeamAndPlayer> GetTeamList()
         {
             ITeamService teamService = new TeamManager(new EFteamDal());
-            var result = _teamService.GetAll();
+            var result = _teamService.GetTeamAndPlayer();
             return result.Data;
         }
     }
