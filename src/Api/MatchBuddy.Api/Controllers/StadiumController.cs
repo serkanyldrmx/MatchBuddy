@@ -28,6 +28,10 @@ namespace MatchBuddy.Api.Controllers
                 City = stadiumModel.City,
                 District = stadiumModel.District,
                 Location = stadiumModel.Location,
+                Address = stadiumModel.Address,
+                OpeningTime = stadiumModel.OpeningTime,
+                ClosingTime = stadiumModel.ClosingTime,
+                Description = stadiumModel.Description
             };
             var result = _stadiumService.Add(stadium);
             if (result.Success)
