@@ -2,6 +2,7 @@
 using MatchBuddy.Business.Abstract;
 using MatchBuddy.Business.Concrete;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +40,14 @@ namespace MatchBuddy.Api.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+        [HttpGet("GetStadiumMatchList")]
+        public List<GetStadiumMatchModel> GetStadiumMatchList()
+        {
+            IStadiumService stadiumService = new StadiumManager(new EFStadiumDal());
+            var result = _stadiumService.GetStadiumMatch();
+            return result.Data;
         }
 
         [HttpGet("GetStadiumList")]

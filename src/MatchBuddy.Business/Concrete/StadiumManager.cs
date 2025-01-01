@@ -3,6 +3,7 @@ using MatchBuddy.Business.Constants;
 using MatchBuddy.Core.Utilities.Results;
 using MatchBuddy.DataAccess.Abstract;
 using MatchBuddy.DataAccess.Concrete.EntityFramework;
+using MatchBuddy.Entities.DTOs;
 using MatchBuddy.Entities.Entity;
 using System.Numerics;
 
@@ -24,6 +25,11 @@ namespace MatchBuddy.Business.Concrete
             }
             _stadiumDal.Add(stadium);
             return new Result(true, Messages.Added);
+        }
+
+        public IDataResult<List<GetStadiumMatchModel>> GetStadiumMatch()
+        {
+            return new SuccessDataResult<List<GetStadiumMatchModel>>(_stadiumDal.GetStadiumMatchs());
         }
 
         public IDataResult<List<Stadium>> GetAll()

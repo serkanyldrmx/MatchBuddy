@@ -26,7 +26,7 @@ namespace MatchBuddy.Api.Controllers
         {
             var team = new Team
             {
-                TeamName = teamModel.TeamName,                
+                TeamName = teamModel.TeamName,
             };
             var result = _teamService.Add(team);
             if (result.Success)
@@ -51,6 +51,25 @@ namespace MatchBuddy.Api.Controllers
             }
             return BadRequest(result);
         }
+
+        //[HttpPost("SavePlayerTeam")]
+        //public IActionResult SavePlayerTeam(TeamModel teamModel)
+        //{
+        //    var playerTeam = new PlayerTeam()
+        //    {
+        //        PlayerId = teamModel.PlayerById,
+        //        TeamId = teamModel.TeamId // group nesnesinin Id'sini kullanarak gruba ait olduğu belirtiliyor
+        //    };
+
+        //    var result1 = _playerTeamService.Add(playerTeam);
+
+        //    if (!result1.Success)
+        //    {
+        //        return BadRequest(result1); // Eğer ekleme işlemi başarısız olursa, döngüyü sonlandırıp hata döndürüyoruz
+        //    }
+        //    return Ok(result1);
+        //    return BadRequest(result1);
+        //}
 
         [HttpGet("GetTeamList")]
         public List<GetTeamAndPlayer> GetTeamList()
