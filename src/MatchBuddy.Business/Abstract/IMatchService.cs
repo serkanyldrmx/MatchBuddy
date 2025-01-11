@@ -19,5 +19,6 @@ namespace MatchBuddy.Business.Abstract
         IDataResult<List<MatchComentsDto>> GetMatchComents(int matchId);
         IDataResult<List<MatchTeamDto>> GetMatchTeam(int matchId);
         IResult AddMatchTeam(MatchTeam matchTeam);
+
     }
 }
