@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MatchBuddy.Api.Controllers
 {
+
+
     [Route("api/[controller]")]
     [ApiController]
     public class StadiumController : ControllerBase
